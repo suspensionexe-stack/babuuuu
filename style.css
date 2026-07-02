@@ -131,16 +131,16 @@ button:hover {
 @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 @keyframes floatTiny { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
-/* --- NEW: Strict Word & Button Animation Rules --- */
+/* --- Strict Word & Button Animation Rules --- */
 .word {
-    opacity: 0; /* Hide words initially */
+    opacity: 0; 
     display: inline-block;
     white-space: pre-wrap;
 }
 
 .action-btn, .buttons {
-    opacity: 0; /* Hide buttons initially */
-    pointer-events: none; /* Make unclickable while hidden */
+    opacity: 0; 
+    visibility: hidden; /* Failsafe hiding method for all browsers */
 }
 
 @keyframes fadeInWord {
@@ -149,6 +149,6 @@ button:hover {
 }
 
 @keyframes fadeInBtn {
-    0% { opacity: 0; transform: scale(0.9); }
-    100% { opacity: 1; transform: scale(1); pointer-events: auto; }
+    0% { opacity: 0; transform: scale(0.9); visibility: hidden; }
+    100% { opacity: 1; transform: scale(1); visibility: visible; }
 }
