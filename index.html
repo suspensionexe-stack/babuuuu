@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Tripti 🤍</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Audio Element (Hidden) -->
+    <audio id="bg-music" loop>
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        
+        <!-- Entry Screen -->
+        <div id="screen-0" class="screen active">
+            <h1>Hey Tripti...</h1>
+            <p>I made something for you.</p>
+            <button onclick="startJourney()">Open 💌</button>
+        </div>
+
+        <!-- Page 1 -->
+        <div id="screen-1" class="screen hidden">
+            <p>I've been thinking a lot lately.</p>
+            <p>You have put so much effort into making me smile, being there for me, and bringing light into my life.</p>
+            <p>I know I haven't always matched that energy, and I failed to show you the same effort in return. But I want to change that.</p>
+            <button onclick="nextPage(1)">Next 🌸</button>
+        </div>
+
+        <!-- Page 2 -->
+        <div id="screen-2" class="screen hidden">
+            <p>I want you to know that I'm not like the rest.<br>I want to be the one who truly sees you, appreciates you, and never takes you for granted.</p>
+            <p>People say you need a specific reason to love someone. But with you... it's just this undeniable, quiet certainty.</p>
+            <button onclick="nextPage(2)">Next ✨</button>
+        </div>
+
+        <!-- Page 3 (The Proposal) -->
+        <div id="screen-3" class="screen hidden">
+            <h2 class="poem">
+                Like a gentle breeze on a quiet day,<br>
+                You chased all the heavy clouds away.<br>
+                No single reason, just a heart that knew,<br>
+                That every step forward leads me to you.
+            </h2>
+            <h1>Tripti, will you be my girl?</h1>
+            
+            <div class="buttons">
+                <button class="yes-btn" onclick="sayYes()">Yes 💖</button>
+                <button class="no-btn" id="no-btn">No</button>
+            </div>
+        </div>
+
+        <!-- Final Screen -->
+        <div id="screen-4" class="screen hidden">
+            <h1>It is my absolute honor. 🥰</h1>
+            <p>You just made me the happiest guy in the world.</p>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
