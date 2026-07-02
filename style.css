@@ -5,7 +5,9 @@
 }
 
 body {
+    /* Soft pastel gradient from image: pink to peach */
     background: linear-gradient(135deg, #ffeff4, #fff8f0);
+    /* Set new, cuter fonts */
     font-family: 'Happy Monkey', cursive;
     display: flex;
     justify-content: center;
@@ -16,59 +18,101 @@ body {
     overflow: hidden;
     color: #5c4044;
     position: relative;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8); /* Readability over doodles */
 }
 
-/* --- Background Decor --- */
+/* --- The Main Doodle Background --- */
 .full-page-decor {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    pointer-events: none; z-index: 0; overflow: hidden;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Can't click background elements */
+    z-index: 0;
+    overflow: hidden;
 }
 
-.small-item { 
-    position: absolute; 
-    background-size: contain; 
-    background-repeat: no-repeat; 
+/* Individual Static Doodles (Conceptual CSS Shapes/SVG backgrounds for shapes like clouds and hearts would be needed, but I'm placing conceptual elements) */
+.doodle {
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.8;
 }
 
-/* --- Container & Screens --- */
+/* Sleeping Pixel Cat on top */
+.sleeping-cat {
+    width: 60px;
+    height: 40px;
+    background-image: url('sleeping_cat_pixel.png'); /* Conceptual pixel cat asset */
+    top: 5px;
+    right: 50%;
+    transform: translateX(50%);
+    animation: simpleFloat 3s ease-in-out infinite;
+}
+
+/* Position and shape other doodles conceptually from image */
+.cloud-top-left { width: 100px; height: 60px; top: 10px; left: 10px; background-color: rgba(180, 220, 255, 0.5); border-radius: 50px; }
+.heart-top-right { width: 40px; height: 40px; top: 20px; right: 20px; background-color: rgba(255, 100, 150, 0.5); transform: rotate(-15deg); }
+.cloud-center-right { width: 80px; height: 50px; top: 40%; right: 5%; background-color: rgba(180, 220, 255, 0.5); border-radius: 50px; }
+.cat-bottom-left { width: 50px; height: 50px; bottom: 10px; left: 5%; background-color: rgba(255, 180, 200, 0.5); border-radius: 50%; } /* Conceptually drawn as simple circles */
+.rabbit-bottom-right { width: 50px; height: 50px; bottom: 10px; right: 5%; background-color: rgba(255, 180, 200, 0.5); border-radius: 50%; }
+
+/* --- Small Static Items everywhere --- */
+.small-item { position: absolute; width: 15px; height: 15px; background-size: contain; background-repeat: no-repeat; opacity: 0.6; }
+.star1 { top: 15%; left: 8%; background-image: url('small_star.png'); animation: twinkle 4s infinite; }
+.heart1 { bottom: 20%; right: 15%; background-image: url('small_heart.png'); animation: floatTiny 2.5s infinite; }
+.flower1 { top: 60%; left: 12%; background-image: url('small_flower.png'); }
+.squiggle1 { top: 30%; right: 20%; background-image: url('small_squiggle.png'); }
+
+/* --- Screen Container & Styling --- */
 .container {
     position: relative;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 60px 40px;
+    background: rgba(255, 255, 255, 0.85); /* Semi-transparent white box for readability over doodles */
+    padding: 60px 40px; /* More padding for all the new elements */
     border-radius: 30px;
-    box-shadow: 0 15px 40px rgba(255, 156, 189, 0.2);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
     max-width: 90%;
     width: 550px;
-    min-height: 400px;
-    z-index: 10;
+    min-height: 400px; /* Ensure space for complex first page */
+    z-index: 10; /* Above doodles */
 }
 
 .screen {
     display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out, transform 1s ease;
+    transform: translateY(20px);
+    position: relative;
 }
 
 .screen.active {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* --- Typography --- */
+/* Headers: Cute, bold font */
 h1 {
     font-family: 'Sniglet', cursive;
-    font-size: 3rem;
+    font-size: 3.5rem;
     margin-bottom: 25px;
     color: #d16b80;
+    text-shadow: 2px 2px 4px rgba(255, 192, 203, 0.5);
 }
 
+/* Body Text */
 p {
     font-size: 1.3rem;
     line-height: 1.7;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
+/* Proposal Poem: Use the cute script-like font */
 .poem {
     font-family: 'Itim', cursive;
     font-size: 2rem;
@@ -77,7 +121,7 @@ p {
     margin-bottom: 40px;
 }
 
-/* --- Buttons --- */
+/* Default Next/Yes/No Button Styling */
 button {
     font-family: 'Happy Monkey', cursive;
     background-color: #ff9cbd;
@@ -89,66 +133,97 @@ button {
     border-radius: 40px;
     cursor: pointer;
     box-shadow: 0 6px 20px rgba(255, 156, 189, 0.5);
-    transition: transform 0.2s, background-color 0.2s;
+    transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
     outline: none;
 }
 
 button:hover {
     background-color: #ff85aa;
-    transform: scale(1.08);
+    transform: scale(1.08) translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 156, 189, 0.7);
 }
 
-.open-btn {
-    background: linear-gradient(135deg, #ff85aa, #ffb1cb);
-}
-
-.yes-btn { background-color: #ff9cbd; }
-
-.no-btn {
-    background-color: #e0e0e0;
-    color: #5c4044;
-    box-shadow: none;
+/* --- Animated Emojis --- */
+.emoji {
     position: absolute;
-    margin-top: 10px;
+    pointer-events: none;
+    user-select: none;
+    z-index: -1;
 }
 
-/* --- Emojis & Animations --- */
-.emoji { position: absolute; pointer-events: none; z-index: -1; }
+/* Specific elements on Screen 0 (matches image) */
 .floating-heart-group { font-size: 2.5rem; top: -50px; right: -60px; animation: groupFloatHearts 3s ease infinite; }
 .pulsing-heart-top { font-size: 3rem; top: -70px; left: -20px; animation: pulseHeart 1.5s infinite; }
+.loading-heart { font-size: 1.5rem; top: -100px; left: 50%; transform: translateX(-50%); animation: loadRotate 2s linear infinite; }
+
+/* Elements on other screens */
 .floating-flowers { font-size: 3rem; bottom: -80px; left: -50px; animation: floatFlowers 3.5s infinite; }
 .floating-stars { font-size: 2.5rem; top: -80px; right: -50px; animation: twinkleStars 4s infinite; }
 .floating-confetti { font-size: 4rem; top: -60px; left: -60px; animation: dropConfetti 5s ease-out; opacity: 0; }
 .screen-3.active .floating-confetti { opacity: 1; }
 .exploding-hearts { font-size: 3rem; bottom: -60px; right: -60px; animation: burstHearts 3s ease-out infinite; }
 
+/* --- The Special "Open" Button --- */
+.open-btn {
+    position: relative;
+    background: linear-gradient(135deg, #ff85aa, #ffb1cb);
+    box-shadow: 0 8px 25px rgba(255, 133, 170, 0.6);
+    overflow: hidden; /* For inner glow */
+}
+
+/* Glowing Ripples and Star Effect for Open Button */
+.open-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 10%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 156, 189, 0) 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: rippleGlow 2.5s infinite;
+    pointer-events: none;
+}
+
+/* --- Yes/No Button Specifics --- */
+.yes-btn {
+    background-color: #ff9cbd;
+}
+
+.no-btn {
+    background-color: #e0e0e0;
+    color: #5c4044;
+    box-shadow: none;
+    position: absolute;
+    margin-top: 10px; /* Small buffer so they don't overlap initially */
+}
+
+/* --- Keyframe Animations --- */
 @keyframes groupFloatHearts { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px) rotate(10deg); } }
 @keyframes pulseHeart { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15) rotate(-5deg); } }
+@keyframes loadRotate { 0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; } 50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; } 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; } }
 @keyframes floatFlowers { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-15px) rotate(20deg); } }
 @keyframes twinkleStars { 0%, 100% { transform: scale(1) rotate(0deg); } 50% { transform: scale(1.1) rotate(-10deg); } }
 @keyframes dropConfetti { 0% { transform: translateY(-20px) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 100% { transform: translateY(100px) rotate(360deg); opacity: 0.3; } }
 @keyframes burstHearts { 0% { transform: scale(0); opacity: 0; } 10% { opacity: 1; } 100% { transform: scale(1.5) translate(20px, -20px); opacity: 0; } }
+
+@keyframes simpleFloat { 0%, 100% { transform: translate(50%, 0) rotate(0); } 50% { transform: translate(50%, -8px) rotate(-3deg); } }
+@keyframes floatTiny { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@keyframes twinkle { 0%, 100% { opacity: 0.6; } 50% { opacity: 0.9; } }
+
+@keyframes rippleGlow {
+    0% { transform: translate(-50%, -50%) scale(0.1); opacity: 0.6; }
+    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.3; }
+    100% { transform: translate(-50%, -50%) scale(1.3); opacity: 0; }
+}
+
 @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-@keyframes floatTiny { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
-/* --- Strict Word & Button Animation Rules --- */
-.word {
-    opacity: 0; 
-    display: inline-block;
-    white-space: pre-wrap;
-}
-
-.action-btn, .buttons {
-    opacity: 0; 
-    visibility: hidden; /* Failsafe hiding method for all browsers */
-}
-
-@keyframes fadeInWord {
-    0% { opacity: 0; transform: translateY(10px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInBtn {
-    0% { opacity: 0; transform: scale(0.9); visibility: hidden; }
-    100% { opacity: 1; transform: scale(1); visibility: visible; }
+/* For mobile, make elements smaller */
+@media (max-width: 600px) {
+    h1 { font-size: 2.5rem; }
+    p { font-size: 1.1rem; }
+    .poem { font-size: 1.5rem; }
+    .container { padding: 40px 20px; }
 }
