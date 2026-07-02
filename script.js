@@ -120,3 +120,4 @@ function moveButton() {
 
 // Start the text animation strictly and immediately on load
 animateText('screen-0');
+
