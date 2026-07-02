@@ -15,30 +15,72 @@ function createFloatingItem(container) {
     container.appendChild(item);
 }
 
+// NEW: Magic Word-by-Word Animation
+function animateText(screenId) {
+    const screen = document.getElementById(screenId);
+    const textElements = screen.querySelectorAll('h1, h2, p');
+    let totalWordCount = 0;
+
+    textElements.forEach(el => {
+        if (el.dataset.animated) return; // Don't animate twice
+        
+        let html = el.innerHTML;
+        // Keep the line breaks intact
+        html = html.replace(/<br\s*\/?>/gi, ' ♥BR♥ '); 
+        
+        let words = html.split(/\s+/);
+        let newHtml = '';
+        
+        words.forEach(word => {
+            if (word === '♥BR♥') {
+                newHtml += '<br>';
+            } else if (word.trim() !== '') {
+                // 0.1 seconds delay per word makes it feel like natural reading
+                newHtml += `<span class="word" style="animation-delay: ${totalWordCount * 0.1}s">${word}</span> `;
+                totalWordCount++;
+            }
+        });
+        
+        el.innerHTML = newHtml;
+        el.dataset.animated = 'true';
+    });
+    
+    // Hide buttons until all words have appeared
+    const buttonGroup = screen.querySelector('.buttons, button');
+    if (buttonGroup) {
+        buttonGroup.style.opacity = '0';
+        buttonGroup.style.animation = `fadeInBtn 1s ease forwards ${totalWordCount * 0.1 + 0.3}s`;
+    }
+}
+
+// Animate the very first screen as soon as the page loads
+document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => animateText('screen-0'), 200);
+});
+
 // Start the journey and play music
 function startJourney() {
     const music = document.getElementById("bg-music");
     const decorContainer = document.querySelector(".full-page-decor");
 
-    // Play music (if not blocked)
     music.play().catch(error => {
-        console.log("Audio autoplay was blocked by the browser. It will play when the user interacts again.");
+        console.log("Audio autoplay was blocked by the browser.");
     });
 
-    // Fade out screen-0
     document.getElementById("screen-0").classList.remove("active");
     document.getElementById("screen-0").classList.add("hidden");
 
-    // Transition to screen-1
     setTimeout(() => {
         document.getElementById("screen-1").classList.remove("hidden");
         document.getElementById("screen-1").classList.add("active");
         
-        // Add more random floating small items to the full-page decor
+        // Trigger word animation for page 1
+        animateText('screen-1'); 
+        
         for(let i = 0; i < 20; i++) {
             createFloatingItem(decorContainer);
         }
-    }, 1500); // Slower fade for dramatic effect
+    }, 1000); 
 }
 
 // Transition to the next page
@@ -50,7 +92,10 @@ function nextPage(currentScreen) {
         const next = currentScreen + 1;
         document.getElementById(`screen-${next}`).classList.remove("hidden");
         document.getElementById(`screen-${next}`).classList.add("active");
-    }, 1000); // 1 second for a smooth cross-fade effect
+        
+        // Trigger word animation for the new page
+        animateText(`screen-${next}`); 
+    }, 1000); 
 }
 
 // When she clicks Yes
@@ -62,24 +107,7 @@ function sayYes() {
 const noBtn = document.getElementById("no-btn");
 
 noBtn.addEventListener("mouseover", moveButton);
-noBtn.addEventListener("click", moveButton); // Just in case she taps it on mobile
+noBtn.addEventListener("click", moveButton); 
 
 function moveButton() {
-    const containerRect = document.querySelector(".container").getBoundingClientRect();
-    const btnRect = noBtn.getBoundingClientRect();
-
-    // Calculate dynamic safe zone boundaries to keep button inside
-    const maxX = containerRect.width - btnRect.width - 50; 
-    const maxY = containerRect.height - btnRect.height - 50;
-
-    // Generate random coordinates inside safe zone
-    const randomX = Math.floor(Math.random() * maxX);
-    const randomY = Math.floor(Math.random() * maxY) - (containerRect.height / 2) + (btnRect.height * 2);
-
-    // Apply the position
-    noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
-    
-    // Play a tiny, soft bounce effect when it moves
-    noBtn.style.animation = 'bounce 0.1s ease-out';
-    setTimeout(() => { noBtn.style.animation = ''; }, 100);
-}
+    const containerRect = document.querySelectorNormally I can help with things like this, but I don't seem to have access to that content. You can try again or ask me for something else.
