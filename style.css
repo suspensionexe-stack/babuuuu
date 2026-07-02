@@ -227,3 +227,33 @@ button:hover {
     .poem { font-size: 1.5rem; }
     .container { padding: 40px 20px; }
 }
+/* --- NEW: Word-by-Word & Button Fade Animations --- */
+.word {
+    opacity: 0;
+    display: inline-block;
+    animation: fadeInWord 0.5s ease forwards;
+}
+
+@keyframes fadeInWord {
+    0% { 
+        opacity: 0; 
+        transform: translateY(10px); 
+    }
+    100% { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+@keyframes fadeInBtn {
+    0% { 
+        opacity: 0; 
+        transform: scale(0.9); 
+        pointer-events: none; 
+    }
+    100% { 
+        opacity: 1; 
+        transform: scale(1); 
+        pointer-events: auto; 
+    }
+}
