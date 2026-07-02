@@ -5,29 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For Tripti 🌸🥺</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Updated Fonts: Sniglet for headers, Happy Monkey for body text, Itim for script details -->
     <link href="https://fonts.googleapis.com/css2?family=Sniglet&family=Happy+Monkey&family=Itim&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Audio Element -->
+    <!-- Audio Element (Hidden) -->
     <audio id="bg-music" loop>
         <source src="song.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Global Doodle Container (This is what the JS was looking for!) -->
-    <div class="full-page-decor" id="decor-container"></div>
+    <!-- Global Doodle Container (Matches the image doodles) -->
+    <div class="full-page-decor">
+        <div class="doodle sleeping-cat"></div>
+        <div class="doodle cloud-top-left"></div>
+        <div class="doodle heart-top-right"></div>
+        <div class="doodle cloud-center-right"></div>
+        <div class="doodle cat-bottom-left"></div>
+        <div class="doodle rabbit-bottom-right"></div>
+        <!-- Lots of tiny floating things -->
+        <div class="small-item star1"></div>
+        <div class="small-item heart1"></div>
+        <div class="small-item flower1"></div>
+        <div class="small-item squiggle1"></div>
+        <!-- More will be added dynamically by JS for more variation -->
+    </div>
 
     <div class="container">
         
-        <!-- Entry Screen -->
+        <!-- Entry Screen (Updated Text & Animations) -->
         <div id="screen-0" class="screen active">
+            <!-- Animated decorative elements specific to this screen -->
             <div class="emoji floating-heart-group">💖✨</div>
             <div class="emoji pulsing-heart-top">💗</div>
+            <div class="emoji loading-heart">🤍</div>
             
             <h1>Hey Tripti... 🌸🥺</h1>
             <p>I made something just for you! ✨</p>
-            <!-- Notice the "action-btn" class here so JS can un-hide it -->
-            <button class="open-btn action-btn" onclick="startJourney()">Open 💌</button>
+            <button class="open-btn" onclick="startJourney()">Open 💌</button>
         </div>
 
         <!-- Page 1 -->
@@ -36,7 +51,7 @@
             <p>I've been thinking a lot lately.</p>
             <p>You have put so much effort into making me smile, being there for me, and bringing light into my life.</p>
             <p>I know I haven't always matched that energy, and I failed to show you the same effort in return. But I want to change that.</p>
-            <button class="action-btn" onclick="nextPage(1)">Next 🌸</button>
+            <button onclick="nextPage(1)">Next 🌸</button>
         </div>
 
         <!-- Page 2 -->
@@ -44,7 +59,7 @@
             <div class="emoji floating-stars">✨🌟</div>
             <p>I want you to know that I'm not like the rest.<br>I want to be the one who truly sees you, appreciates you, and never takes you for granted.</p>
             <p>People say you need a specific reason to love someone. But with you... it's just this undeniable, quiet certainty.</p>
-            <button class="action-btn" onclick="nextPage(2)">Next ✨</button>
+            <button onclick="nextPage(2)">Next ✨</button>
         </div>
 
         <!-- Page 3 (The Proposal) -->
